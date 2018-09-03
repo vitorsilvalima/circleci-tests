@@ -19,7 +19,7 @@ jobs:
    steps: 
      - checkout 
      - attach_workspace:
-        at: /app/tchau.txt
+        at: app/tchau.txt
      - run: ls -lah
      - run: ls -lah app
 workflows:
