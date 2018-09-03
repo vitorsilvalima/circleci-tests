@@ -1,0 +1,31 @@
+version: 2 
+jobs: 
+ build: 
+   docker: 
+     - image: circleci/node:9.8.0-stretch-browsers 
+   working_directory: ~/my-app
+   steps: 
+     - checkout 
+     - run: ls -lah
+     - run: echo hello > app/tchau.txt
+     - persist_to_workspace:
+          root: ~/my-app
+          paths:
+            - app/tchau.txt
+ build2: 
+   docker: 
+     - image: circleci/node:9.8.0-stretch-browsers 
+   working_directory: ~/my-app
+   steps: 
+     - checkout 
+     - attach_workspace:
+        at: /app/tchau.txt
+     - run: ls -lah
+     - run: ls -lah app
+workflows:
+    version: 2
+    test_android:
+        jobs:
+            - build2:
+                requires:
+                    - build
