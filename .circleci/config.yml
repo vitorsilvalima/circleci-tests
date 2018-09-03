@@ -18,8 +18,8 @@ jobs:
    working_directory: ~/my-app
    steps: 
      - checkout 
-     - attach_workspace:
-        at: app/tchau.txt
+#     - attach_workspace:
+#        at: app/tchau.txt
      - run: ls -lah
      - run: ls -lah app
 workflows:
